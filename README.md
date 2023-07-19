@@ -1,4 +1,4 @@
-# HRIS
+# Human-Resources-Information-System
 
 
 General HRIS.
