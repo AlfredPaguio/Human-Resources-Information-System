@@ -1,11 +1,10 @@
 import enum
-from datetime import date, datetime, timedelta
+from datetime import date, datetime
 
-from flask_login import UserMixin, current_user
-from sqlalchemy.ext.associationproxy import AssociationProxy, association_proxy
+from flask_login import UserMixin
+from sqlalchemy.ext.associationproxy import association_proxy
 from sqlalchemy.ext.hybrid import hybrid_property
-from sqlalchemy.orm import column_property
-from sqlalchemy.sql import extract, func, select
+from sqlalchemy.sql import func
 
 from . import bcrypt, db, login_manager
 
