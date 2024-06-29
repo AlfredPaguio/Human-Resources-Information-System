@@ -5,7 +5,7 @@ import string
 
 from flask import (Blueprint, current_app, flash, redirect, render_template,
                    request, session, url_for)
-from flask_login import login_required, logout_user
+from flask_login import current_user, login_required, logout_user
 from password_strength import PasswordPolicy
 from werkzeug.utils import secure_filename
 
@@ -58,7 +58,12 @@ def profile():
 
         salaries = db.session.query(Salaries).all()
 
-        user, employee_info, employment_info, position, department = selected_employee
+        if selected_employee:
+            user, employee_info, employment_info, position, department = selected_employee
+        else:
+            flash('Employee not found.', 'error')
+            print(f'Employee: {selected_employee}')
+            return redirect(url_for('announcement_bp.announcements'))
         
         employee_form = EmployeeForm(
             #users
@@ -100,6 +105,7 @@ def profile():
                             department=department,
                             employee_form=employee_form,
                             salaries=salaries)
+
 
 
 @profile_bp.route('/profile/<int:employee_id>/update_account', methods=['GET', 'POST'])

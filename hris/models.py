@@ -47,7 +47,14 @@ class POSITION_STATUS(enum.Enum):
 
 @login_manager.user_loader
 def load_user(user_id):
-   return Users.query.get(int(user_id))
+   print(f"Loading user with ID: {user_id}")
+   user = Users.query.get(int(user_id))
+   if user:
+      print(f"User found: {user}")
+      print(dir(user))
+   else:
+      print("User not found.")
+   return user
 
 class Users(db.Model, UserMixin):
    # Primary Key
@@ -114,11 +121,11 @@ class EmployeeInfo(db.Model):
    emergency_name = db.Column(db.String(length=50), nullable=False)
    emergency_contact = db.Column(db.String(length=50), nullable=False)
    emergency_relationship = db.Column(db.String(length=50), nullable=False)
-   tin = db.Column(db.String(length=50), nullable=False, unique=True)
-   SSS = db.Column(db.String(length=50), nullable=False, unique=True)
-   phil_health = db.Column(db.String(length=50), nullable=False, unique=True)
-   pag_ibig = db.Column(db.String(length=50), nullable=False, unique=True)
-   date_created = db.Column(db.Date(), default=func.current_date(), nullable=False)
+   tin = db.Column(db.String(length=50), nullable=True, unique=False) #Temporary
+   SSS = db.Column(db.String(length=50), nullable=True, unique=False) #Temporary
+   phil_health = db.Column(db.String(length=50), nullable=True, unique=False) #Temporary
+   pag_ibig = db.Column(db.String(length=50), nullable=True, unique=False) #Temporary
+   date_created = db.Column(db.Date(), default=func.current_date(), nullable=True)
 
    #Foreign Keys  
    position_id = db.Column(db.Integer(), db.ForeignKey('positions.id'))

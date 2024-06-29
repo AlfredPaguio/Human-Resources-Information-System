@@ -1,5 +1,5 @@
 from flask import render_template
-from hris import app
+from hris import app, defaults
 
 # checks if the app.py file has executed directly and not imported
 if __name__ == '__main__':
@@ -12,3 +12,5 @@ if __name__ == '__main__':
         return render_template('413.html'), 413
     
     app.run(debug=True, threaded=True) 
+    defaults.create_default_data()
+    

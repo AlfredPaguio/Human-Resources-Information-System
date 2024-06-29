@@ -236,7 +236,7 @@ def reject_leave_request(employee_id, employee_name):
             attendance = Attendance.query.filter_by(date=leave.leave_date,
                                                     employee_id=employee_id).first()
 
-            if attendance.attendance_type.value is not 'On_Leave':
+            if attendance.attendance_type.value != 'On_Leave':
                 leave.status = 'Declined'
                 leave.processed_date = datetime.now().strftime('%Y-%m-%d')
                 leave.processed_by = current_user.name
