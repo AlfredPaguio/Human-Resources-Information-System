@@ -1,6 +1,7 @@
 from flask import Blueprint, flash, redirect, render_template, request, url_for
 from flask_login import current_user, login_required, login_user, logout_user
 
+from hris import defaults
 from hris.auth.forms import *
 from hris.models import *
 
@@ -11,6 +12,7 @@ auth_bp = Blueprint('auth_bp', __name__,  template_folder='templates',
 @auth_bp.route('login', methods=['GET', 'POST'])
 def login():
    
+   defaults.create_default_data()
    login_form = LoginForm()
 
    if current_user.is_authenticated:
