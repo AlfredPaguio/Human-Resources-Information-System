@@ -12,12 +12,17 @@
             </h4>
 
             <div>
-               <label class="switch mt-2 ml-2">
-                  <input type="checkbox" id="switch" class="primary">
-                  <span class="slider round"></span>
-               </label>
+              
 
-               <div class="d-flex pr-3 justify-content-end pt-2">
+               <div class="d-flex pr-3 justify-content-between pt-2 align-items-center">
+                  <div class="d-flex align-items-center">
+                     <h2 class="font-weight-bold mt-2 ml-2">Edit Mode</h2>
+                     <label class="switch mt-2 ml-2">
+                        <input type="checkbox" id="switch" class="primary">
+                        <span class="slider round"></span>
+                     </label>
+                  </div>
+
                   <a class="btn btn-outline-primary shadow" href="{{ url_for('employees_bp.manage_employee_account', employee_name=employee_name, employee_id=employee_id) }}">
                      <i class="fa-solid fa-gear"></i> <u> Account Settings</u>
                   </a>
